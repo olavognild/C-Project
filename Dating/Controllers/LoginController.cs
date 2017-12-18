@@ -60,5 +60,12 @@ namespace Dating.Controllers
         {
             return View();
         }
+
+        public ActionResult IndexLoggedOut()
+        {
+            Session.Abandon();
+            Session.Remove("UserID");
+            return View();
+        }
     }
 }
