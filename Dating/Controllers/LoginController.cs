@@ -34,8 +34,6 @@ namespace Dating.Controllers
                     if (usr != null)
                     {
                         Session["UserID"] = usr.Id.ToString();
-                        Session["Email"] = usr.Email.ToString();
-                        Session["Firstname"] = usr.Firstname.ToString();
                         return RedirectToAction("LoggedIn");
                     }
                 }
