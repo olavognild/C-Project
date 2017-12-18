@@ -18,30 +18,34 @@ namespace Dating.Controllers
             }
         }
         // GET: Login
-   /*     public ActionResult Login()
-        {
-            return View();
-        }
-        */
+        /*     public ActionResult Login()
+             {
+                 return View();
+             }
+             */
         [HttpPost]
         public ActionResult Login(User user)
         {
-            using (Datacontext db = new Datacontext())
+            try
             {
-                var usr = db.Users.Single(u => u.Email == user.Email && u.Password == user.Password);
-                    if(usr != null)
+                using (Datacontext db = new Datacontext())
                 {
-                    Session["UserID"] = usr.Id.ToString();
-                    Session["Email"] = usr.Email.ToString();
-                    Session["Firstname"] = usr.Firstname.ToString();
-                    return RedirectToAction("LoggedIn");
+                    var usr = db.Users.Single(u => u.Email == user.Email && u.Password == user.Password);
+                    if (usr != null)
+                    {
+                        Session["UserID"] = usr.Id.ToString();
+                        Session["Email"] = usr.Email.ToString();
+                        Session["Firstname"] = usr.Firstname.ToString();
+                        return RedirectToAction("LoggedIn");
+                    }
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Email or Password is not correct");
-                }
-                return View("LoggedIn");
             }
+            catch
+            {
+                ModelState.AddModelError("", "Wrong email or password");
+                return View("LogInView");
+            }
+            return View("LoggedIn");
         }
 
         public ActionResult Login()
@@ -65,6 +69,10 @@ namespace Dating.Controllers
         {
             Session.Abandon();
             Session.Remove("UserID");
+            return View();
+        }
+        public ActionResult LogInView()
+        {
             return View();
         }
     }
