@@ -34,8 +34,6 @@ namespace Dating.Controllers
                     if (usr != null)
                     {
                         Session["UserID"] = usr.Id.ToString();
-                        Session["Email"] = usr.Email.ToString();
-                        Session["Firstname"] = usr.Firstname.ToString();
                         return RedirectToAction("LoggedIn");
                     }
                 }
@@ -62,7 +60,12 @@ namespace Dating.Controllers
 
         public ActionResult LoggedIn()
         {
-            return View();
+            using (Datacontext db = new Datacontext())
+            {
+                var id = int.Parse(Session["UserID"].ToString());
+                var usr = db.Users.Single(u => u.Id == id);
+                return View(usr);
+            }
         }
 
         public ActionResult IndexLoggedOut()
