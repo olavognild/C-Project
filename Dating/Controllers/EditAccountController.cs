@@ -37,5 +37,48 @@ namespace Dating.Controllers
             }
             return RedirectToAction("EditAccount");
         }
+
+        public ActionResult EditPassword(editwrapper edit)
+        {
+            try
+            {
+                using (Datacontext db = new Datacontext())
+                {
+                    var id = int.Parse(Session["UserID"].ToString());
+                    var usr = db.Users.Single(u => u.Id == id);
+                    usr.Password = edit.Password.Password;
+
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Something went wrong, please try again.");
+                return View("EditAccount");
+            }
+            return RedirectToAction("EditAccount");
+        }
+
+        [HttpPost]
+        public ActionResult EditAbout(editwrapper edit)
+        {
+            try
+            {
+                using (Datacontext db = new Datacontext())
+                {
+                    var id = int.Parse(Session["UserID"].ToString());
+                    var usr = db.Users.Single(u => u.Id == id);
+                    usr.About = edit.About.About;
+
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Something went wrong, please try again.");
+                return View("EditAccount");
+            }
+            return RedirectToAction("EditAccount");
+        }
     }
 }
