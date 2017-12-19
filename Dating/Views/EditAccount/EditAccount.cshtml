@@ -12,12 +12,13 @@
 <h4>Enter new information to update your account</h4>
 <hr />
 
-@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("EditMail", "EditAccount", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.mailen.Email, new { @class = "col-md-2 control-label" })
         <div class="col-md-4">
             @Html.TextBoxFor(m => m.mailen.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.mailen.Email, "", new { @class = "text-danger" })
         </div>
         <div class="col-md-2">
             <input type="submit" class="btn btn-default" value="Update" />
