@@ -10,19 +10,6 @@ namespace Dating.Controllers
 {
     public class LoginController : Controller
     {
-        public ActionResult Index()
-        {
-            using(Datacontext db = new Datacontext())
-            {
-                return View(db.Users.ToList());
-            }
-        }
-        // GET: Login
-        /*     public ActionResult Login()
-             {
-                 return View();
-             }
-             */
         [HttpPost]
         public ActionResult Login(User user)
         {
@@ -68,7 +55,7 @@ namespace Dating.Controllers
             }
         }
 
-        public ActionResult IndexLoggedOut()
+        public ActionResult Index()
         {
             Session.Abandon();
             Session.Remove("UserID");

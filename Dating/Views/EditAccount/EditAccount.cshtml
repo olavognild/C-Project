@@ -40,6 +40,46 @@
     </div>
 }
 
+@using (Html.BeginForm("EditAge", "EditAccount", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Age.Age, new { @class = "col-md-2 control-label" })
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.Age.Age, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Age.Age, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-2">
+            <input type="submit" class="btn btn-default" value="Update" />
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("EditProfilePic", "EditAccount", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.ProfileURL.ProfileURL, new { @class = "col-md-2 control-label" })
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.ProfileURL.ProfileURL, new { @class = "form-control" })
+        </div>
+        <div class="col-md-2">
+            <input type="submit" class="btn btn-default" value="Update" />
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("EditSearchable", "EditAccount", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Searchable.Searchable, new { @class = "col-md-2 control-label" })
+        <div class="col-md-4">
+            @Html.DropDownListFor(model => model.Searchable.Searchable, new List<SelectListItem> { new SelectListItem { Text = "Yes", Value = "Yes", Selected = true }, new SelectListItem { Text = "No", Value = "No" } })
+        </div>
+        <div class="col-md-2">
+            <input type="submit" class="btn btn-default" value="Update" />
+        </div>
+    </div>
+}
+
 @using (Html.BeginForm("EditAbout", "EditAccount", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     <div class="form-group">
@@ -50,7 +90,6 @@
         <div class="col-md-2">
             <input type="submit" class="btn btn-default" value="Update" />
         </div>
-
     </div>
 }
 

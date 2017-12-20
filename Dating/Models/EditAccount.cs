@@ -31,10 +31,32 @@ namespace Dating.Models
         public string About { get; set; }
     }
 
+    public class EditAge
+    {
+        [Range(18, 99, ErrorMessage = "Age must be between 18 and 99")]
+        [Display(Name = "Age")]
+        public int Age { get; set; }
+    }
+
+    public class EditProfilePic
+    {
+        [Display(Name = "Profile Picture")]
+        public string ProfileURL { get; set; }
+    }
+
+    public class EditSearchable
+    {
+        [Display(Name = "Searchable Profile")]
+        public string Searchable { get; set; }
+    }
+
     public class editwrapper
     {
         public EditEmail mailen { get; set; }
         public EditPassword Password { get; set; }
         public EditAbout About { get; set; }
+        public EditAge Age { get; set; }
+        public EditProfilePic ProfileURL { get; set; }
+        public EditSearchable Searchable { get; set; }
     }
 }

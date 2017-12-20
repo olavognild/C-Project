@@ -30,7 +30,11 @@ namespace Dating.Controllers
                     Firstname = model.Firstname,
                     Lastname = model.Lastname,
                     Email = model.Email,
-                    Password = model.Password
+                    Password= model.Password,
+                    Age = model.Age,
+                    Gender = model.Gender,
+                    PictureURL = model.PictureURL,
+                    Searchable = model.Searchable
 
                 };
 

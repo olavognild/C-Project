@@ -38,6 +38,7 @@ namespace Dating.Controllers
             return RedirectToAction("EditAccount");
         }
 
+        [HttpPost]
         public ActionResult EditPassword(editwrapper edit)
         {
             try
@@ -69,6 +70,72 @@ namespace Dating.Controllers
                     var id = int.Parse(Session["UserID"].ToString());
                     var usr = db.Users.Single(u => u.Id == id);
                     usr.About = edit.About.About;
+
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Something went wrong, please try again.");
+                return View("EditAccount");
+            }
+            return RedirectToAction("EditAccount");
+        }
+
+        [HttpPost]
+        public ActionResult EditAge(editwrapper edit)
+        {
+            try
+            {
+                using (Datacontext db = new Datacontext())
+                {
+                    var id = int.Parse(Session["UserID"].ToString());
+                    var usr = db.Users.Single(u => u.Id == id);
+                    usr.Age = edit.Age.Age;
+
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Something went wrong, please try again.");
+                return View("EditAccount");
+            }
+            return RedirectToAction("EditAccount");
+        }
+
+        [HttpPost]
+        public ActionResult EditProfilePic(editwrapper edit)
+        {
+            try
+            {
+                using (Datacontext db = new Datacontext())
+                {
+                    var id = int.Parse(Session["UserID"].ToString());
+                    var usr = db.Users.Single(u => u.Id == id);
+                    usr.PictureURL = edit.ProfileURL.ProfileURL;
+
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Something went wrong, please try again.");
+                return View("EditAccount");
+            }
+            return RedirectToAction("EditAccount");
+        }
+
+        [HttpPost]
+        public ActionResult EditSearchable(editwrapper edit)
+        {
+            try
+            {
+                using (Datacontext db = new Datacontext())
+                {
+                    var id = int.Parse(Session["UserID"].ToString());
+                    var usr = db.Users.Single(u => u.Id == id);
+                    usr.Searchable = edit.Searchable.Searchable;
 
                     db.SaveChanges();
                 }
